@@ -15,13 +15,13 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('nik');
-            $table->enum('gender',['P','L']);
+            $table->enum('gender', ['P', 'L']);
             $table->string('birth_date');
             $table->string('place_of_birth');
             $table->string('address');
-            $table->string('level');
             $table->boolean('status')->default(true);
             $table->string('picture');
+            $table->foreignId('level_id')->references('id')->on('level');
             $table->timestamps();
         });
     }
