@@ -18,7 +18,7 @@ class MemberSeeder extends Seeder
         $faker = Faker::create();
 
         foreach (range(1, 50) as $index) {
-            DB::table('member')->insert([
+            DB::table('members')->insert([
                 'name' => $faker->name,
                 'nik' => $this->generateRandomNumber(16),
                 'gender' => $faker->randomElement(['P', 'L']),
@@ -28,6 +28,10 @@ class MemberSeeder extends Seeder
                 'level_id' => $faker->numberBetween(1, 3),
                 'status' => $faker->boolean,
                 'picture' => $faker->imageUrl(640, 480, 'people', true),
+                'email' => $faker->email,
+                'password' => '$2a$12$2HMUBXVc68mnYAQKmnezu.dN99H6XrMg8TKpkM6.obPjYofN1wjNu',
+                'created_at' => now(),
+                'updated_at' => now()
             ]);
         }
     }
