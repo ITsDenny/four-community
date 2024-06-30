@@ -8,6 +8,10 @@
                     <i class="bi bi-grid"></i>
                     <span>Dashboard</span>
                 </a>
+                <a class="nav-link " href="/admin/add-member">
+                    <i class="bi bi-plus-lg"></i>
+                    <span>Add Member</span>
+                </a>
             </li><!-- End Dashboard Nav -->
             <li class="nav-item">
                 <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
@@ -18,6 +22,21 @@
                     <li>
                         <a href="/admin/member-list">
                             <i class="bi bi-circle"></i><span>Tabel Anggota</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/admin/group-list">
+                            <i class="bi bi-circle"></i><span>Tabel Group</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/admin/level-list">
+                            <i class="bi bi-circle"></i><span>Tabel Level</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/admin/user-list">
+                            <i class="bi bi-circle"></i><span>Tabel User</span>
                         </a>
                     </li>
                 </ul>
