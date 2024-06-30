@@ -11,22 +11,21 @@
 
               <!-- General Form Elements -->
               <form>
+              <form action="{{ route('submit-member') }}" method="POST" enctype="multipart/form-data">
+                            @csrf
+                            <div class="row mb-3">
                 <div class="row mb-3">
-                  <label for="inputText" class="col-sm-2 col-form-label">Text</label>
+                  <label for="inputText" class="col-sm-2 col-form-label">name</label>
                   <div class="col-sm-10">
                     <input type="text" class="form-control">
                   </div>
                 </div>
                 <div class="row mb-3">
-                  <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
+                  <label for="inputEmail" class="col-sm-2 col-form-label">description</label>
                   <div class="col-sm-10">
-                    <input type="email" class="form-control">
+                    <input type="text" class="form-control">
                   </div>
                 </div>
-                <div class="row mb-3">
-                  <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
-                  <div class="col-sm-10">
-                    <input type="password" class="form-control">
                   </div>
                   <div class="row mb-3">
                   <label class="col-sm-2 col-form-label">Submit Button</label>
