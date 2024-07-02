@@ -10,20 +10,20 @@
               <h5 class="card-title">General Form Elements</h5>
 
               <!-- General Form Elements -->
-              <form>
-              <form action="{{ route('submit-member') }}" method="POST" enctype="multipart/form-data">
+              
+              <form action="{{ route('submit-level') }}" method="POST" enctype="multipart/form-data">
                             @csrf
-                            <div class="row mb-3">
+              
                 <div class="row mb-3">
                   <label for="inputText" class="col-sm-2 col-form-label">name</label>
                   <div class="col-sm-10">
-                    <input type="text" class="form-control">
+                    <input type="text" name="name" class="form-control">
                   </div>
                 </div>
                 <div class="row mb-3">
                   <label for="inputEmail" class="col-sm-2 col-form-label">description</label>
                   <div class="col-sm-10">
-                    <input type="text" class="form-control">
+                    <input type="text" name="description" class="form-control">
                   </div>
                 </div>
                   </div>

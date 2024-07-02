@@ -21,7 +21,6 @@ class WebAdminController extends Controller
     public function getMember()
     {
         $data = $this->memberModel->get();
-
         return view('admin.member_table', compact('data'));
     }
 }
