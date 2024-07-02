@@ -15,7 +15,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             LevelSeeder::class,
-            MemberSeeder::class
+            // MemberSeeder::class
         ]);
     }
 }
