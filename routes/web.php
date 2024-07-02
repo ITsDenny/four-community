@@ -14,8 +14,11 @@ Route::prefix('admin')->controller(WebAdminController::class)->group(function ()
     Route::get('/member-list', 'getMember');
 });
 
-Route::get('/admin/add-member', [MemberController::class, 'memberForm']);
-Route::post('submit-member', [MemberController::class, 'store']);
+Route::prefix('member')->controller(MemberController::class)->group(function () {
+    Route::get('/add-member', 'memberForm');
+    Route::post('/submit-member', 'store')->name('submit-member');
+    Route::delete('/{id}/delete', 'delete')->name('delete-member');
+});
 
 
 Route::prefix('auth')->controller(AuthController::class)->group(function () {

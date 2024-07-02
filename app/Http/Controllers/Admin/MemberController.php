@@ -8,8 +8,9 @@ use Illuminate\Http\Request;
 
 class MemberController extends Controller
 {
-    public function __construct(protected Member $memberModel)
-    {
+    public function __construct(
+        protected Member $memberModel
+    ) {
         $this->memberModel = $memberModel;
     }
 
@@ -23,24 +24,43 @@ class MemberController extends Controller
             'place_of_birth' => 'required|string|min:6',
             'address' => 'required|string|min:10',
             'status' => 'nullable|boolean',
-            'picture' => 'nullable|string',
-            'level_id' => 'required|exist:levels,id',
+            'level_id' => 'required|exists:level,id',
             'email' => 'required|email',
-            // 'password' => 'required|string'
         ]);
 
-        $data = $request->all();
+        $data = [
+            'name' => $request->name,
+            'nik' => $request->nik,
+            'gender' => $request->gender,
+            'birth_date' => $request->birth_date,
+            'place_of_birth' => $request->place_of_birth,
+            'address' => $request->address,
+            'status' => true,
+            'level_id' => $request->level_id,
+            'email' => $request->email,
+            'password' => bcrypt('12345678'),
+            'picture' => 'asset_url'
+        ];
         $save = $this->memberModel->create($data);
 
-        if ($save) {
-            return view('admin.member_table');
-        } else {
+        if (!$save) {
             return back()->with('error', 'Failed insert data!');
+        } else {
+            return redirect('/admin/add-member')->with('success', 'Data added sucessfully!');
         }
     }
 
     public function memberForm()
     {
         return view('admin.member.add_member_form');
+    }
+
+    public function delete($id)
+    {
+        $delete = $this->memberModel->where('id', $id)->delete();
+
+        if (!$delete) return back()->with('error', 'Failed insert data!');
+
+        return redirect('/admin/member-list')->with('success', 'Data deleted successfully');
     }
 }

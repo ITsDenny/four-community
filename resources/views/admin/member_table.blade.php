@@ -6,16 +6,13 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
-                        <button type="button" href="/admin/add-member" class="btn btn-primary rounded-pill mt-2 mb-2"
-                            data-bs-toggle="modal" data-bs-target="addData"
-                        >Add Member</button>
-                        <table class="table datatable">
+                        <table class="datatable">
                             <thead>
                                 <tr>
                                     <th>Name</th>
                                     <th>NIK</th>
                                     <th>Jenis Kelamin</th>
-                                    <th data-type="date" data-format="YYYY/DD/MM">Tgl Lahir</th>
+                                    <th data-type="date" data-format="YYYY/MM/DD">Tgl Lahir</th>
                                     <th>Status</th>
                                     <th>Action</th>
                                 </tr>
@@ -34,32 +31,114 @@
                                         </label>
                                     </td>
                                     <td>
-                                        Hapus <br>
-                                        Edit <br>    
+                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                            data-bs-target="#verticalycentered">
+                                            <i class="bi bi-pencil-square"></i>
+                                        </button>
+                                        <form action="/member/{{ $member->id }}/delete" method="POST"
+                                            style="display:inline;">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger"
+                                                onclick="return confirm('Are you sure you want to delete this member?');">
+                                                <i class="bi bi-trash-fill"></i>
+                                            </button>
+                                        </form>
                                     </td>
                                 </tr>
                                 @endforeach
                             </tbody>
                         </table>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-                        <div class="modal fade" id="addData" tabindex="-1">
-                            <div class="modal-dialog modal-dialog-centered">
-                              <div class="modal-content">
-                                <div class="modal-header">
-                                  <h5 class="modal-title">Vertically Centered</h5>
-                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <!-- update member modal -->
+        <div class="modal fade" id="verticalycentered" tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Form update member</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="{{ route('submit-member') }}" method="POST" enctype="multipart/form-data">
+                            @csrf
+                            <div class="row mb-3">
+                                <label for="inputText" class="col-sm-2 col-form-label">Name</label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="name" class="form-control">
                                 </div>
-                                <div class="modal-body">
-                                  Non omnis incidunt qui sed occaecati magni asperiores est mollitia. Soluta at et reprehenderit. Placeat autem numquam et fuga numquam. Tempora in facere consequatur sit dolor ipsum. Consequatur nemo amet incidunt est facilis. Dolorem neque recusandae quo sit molestias sint dignissimos.
+                            </div>
+                            <div class="row mb-3">
+                                <label for="inputText" class="col-sm-2 col-form-label">Email</label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="email" class="form-control">
                                 </div>
-                                <div class="modal-footer">
-                                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                  <button type="button" class="btn btn-primary">Save changes</button>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="inputText" class="col-sm-2 col-form-label">NIK</label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="nik" class="form-control">
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="inputDate" class="col-sm-2 col-form-label">Birth of Date</label>
+                                <div class="col-sm-10">
+                                  <input type="date" name="birth_date" class="form-control">
                                 </div>
                               </div>
+                            <div class="row mb-3">
+                                <label for="inputText" class="col-sm-2 col-form-label">Place Of Birth</label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="place_of_birth" class="form-control">
+                                </div>
                             </div>
-                          </div>
-
+                            <div class="row mb-3">
+                                <label for="inputText" class="col-sm-2 col-form-label">Address</label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="address" class="form-control">
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label class="col-sm-2 col-form-label">Gender</label>
+                                <div class="col-sm-10">
+                                    <select class="form-select" name="gender" aria-label="Select gender">
+                                        <option selected>Gender</option>
+                                        <option value="P">Perempuan</option>
+                                        <option value="L">Laki-Laki</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label class="col-sm-2 col-form-label">Level</label>
+                                <div class="col-sm-10">
+                                    <select class="form-select" name="level_id" aria-label="Select level">
+                                        <option selected>Level</option>
+                                        <option value=1>Admin</option>
+                                        <option value=2>Moderator</option>
+                                        <option value=3>Member</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="row mb-3">
+                                <label class="col-sm-2 col-form-label">Submit</label>
+                                <div class="col-sm-10">
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div><!-- End update member modal-->
+    </section>
 </main>
 
 <style>
