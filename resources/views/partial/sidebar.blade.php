@@ -51,6 +51,21 @@
                         </a>
                     </li>
                 </ul>
+
+            </li><!-- End Tables Nav -->
+            
+    <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-journal-text"></i><span>Forms</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+          <li>
+            <a href="/admin/level/add">
+              <i class="bi bi-circle"></i><span>Form Elements</span>
+            </a>
+          </li>
+      </li><!-- End Login Page Nav -->
+
             </li>
 
 
