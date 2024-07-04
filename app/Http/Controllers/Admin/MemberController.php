@@ -23,7 +23,7 @@ class MemberController extends Controller
             'birth_date' => 'required|string|date_format:Y-m-d',
             'place_of_birth' => 'required|string|min:6',
             'address' => 'required|string|min:10',
-            'status' => 'nullable|boolean',
+            'tatus' => 'nullable|boolean',
             'level_id' => 'required|exists:level,id',
             'email' => 'required|email',
         ]);
@@ -35,7 +35,7 @@ class MemberController extends Controller
             'birth_date' => $request->birth_date,
             'place_of_birth' => $request->place_of_birth,
             'address' => $request->address,
-            'status' => true,
+            'tatus' => true,
             'level_id' => $request->level_id,
             'email' => $request->email,
             'password' => bcrypt('12345678'),
@@ -44,10 +44,12 @@ class MemberController extends Controller
         $save = $this->memberModel->create($data);
 
         if (!$save) {
-            return back()->with('error', 'Failed insert data!');
+            session()->flash('error', 'Failed insert data!');
         } else {
-            return redirect('/admin/add-member')->with('success', 'Data added sucessfully!');
+            session()->flash('success', 'Data added successfully!');
         }
+
+        return redirect('member/add-member');
     }
 
     public function memberForm()
@@ -62,5 +64,9 @@ class MemberController extends Controller
         if (!$delete) return back()->with('error', 'Failed insert data!');
 
         return redirect('/admin/member-list')->with('success', 'Data deleted successfully');
+    }
+
+    public function update($id)
+    {
     }
 }

@@ -27,4 +27,4 @@ Route::prefix('auth')->controller(AuthController::class)->group(function () {
 });
 
 
-Route::get('admin/group/add',[GroupController::class,'addGroupForm']);
+Route::get('admin/group/add', [GroupController::class, 'addGroupForm']);
