@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\MemberController;
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\GroupController;
 use App\Http\Controllers\WebAdminController;
 use Illuminate\Support\Facades\Route;
 
@@ -24,3 +25,6 @@ Route::prefix('member')->controller(MemberController::class)->group(function () 
 Route::prefix('auth')->controller(AuthController::class)->group(function () {
     Route::get('/login', 'getLoginForm');
 });
+
+
+Route::get('admin/group/add',[GroupController::class,'addGroupForm']);
