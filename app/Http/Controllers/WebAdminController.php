@@ -3,15 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Models\Member;
+use App\Models\Level;
 use Illuminate\Http\Request;
 
 class WebAdminController extends Controller
 {
     public function __construct(
-        protected Member $memberModel
-    ) {
+        protected Member $memberModel ){
         $this->memberModel = $memberModel;
-    }
+         }
+    
 
     public function hello()
     {
@@ -23,4 +24,6 @@ class WebAdminController extends Controller
         $data = $this->memberModel->get();
         return view('admin.member_table', compact('data'));
     }
+    
+   
 }
