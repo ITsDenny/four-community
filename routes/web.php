@@ -9,9 +9,8 @@ use App\Http\Controllers\WebAdminController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('admin.welcome');
 });
-
 
 Route::get('/admin', [WebAdminController::class, 'hello']);
 Route::get('/admin/member-list', [WebAdminController::class, 'getMember']);
@@ -25,15 +24,20 @@ Route::prefix('admin')->controller(WebAdminController::class)->group(function ()
 
 Route::prefix('member')->controller(MemberController::class)->group(function () {
     Route::get('/add-member', 'memberForm');
+    Route::get('{id}', 'getOne');
     Route::post('/submit-member', 'store')->name('submit-member');
+    Route::put('/update-member/{id}', 'update')->name('update-member');
     Route::delete('/{id}/delete', 'delete')->name('delete-member');
 });
 Route::prefix('level')->controller(LevelController::class)->group(function () {
     Route::get('/add-level', 'levelform');
     Route::post('/submit-level', 'store')->name('submit-level');
+    Route::get('/', 'getAllLevel');
 });
 Route::prefix('auth')->controller(AuthController::class)->group(function () {
     Route::get('/login', 'getLoginForm');
 });
 
+Route::get('admin/group/list', [GroupController::class, 'getAllGroup']);
 Route::get('admin/group/add', [GroupController::class, 'addGroupForm']);
+Route::post('admin/group', [GroupController::class, 'store']);

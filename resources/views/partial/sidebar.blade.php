@@ -21,6 +21,11 @@
                             <i class="bi bi-person-fill-add" style="font-size: 20px;"></i><span>Tambah Anggota</span>
                         </a>
                     </li>
+                    <li>
+                        <a href="/admin/group/add">
+                            <i class="bi bi bi-building-add" style="font-size: 20px;"></i><span>Tambah Group</span>
+                        </a>
+                    </li>
                 </ul>
             </li>
 
@@ -36,7 +41,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="/admin/group-list">
+                        <a href="list">
                             <i class="bi bi-circle"></i><span>Tabel Group</span>
                         </a>
                     </li>
@@ -54,19 +59,4 @@
 
             </li><!-- End Tables Nav -->
             
-    <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-journal-text"></i><span>Forms</span><i class="bi bi-chevron-down ms-auto"></i>
-        </a>
-        <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-          <li>
-            <a href="/admin/level/add">
-              <i class="bi bi-circle"></i><span>Form Elements</span>
-            </a>
-          </li>
-      </li><!-- End Login Page Nav -->
-
-            </li>
-
-
     </aside><!-- End Sidebar-->

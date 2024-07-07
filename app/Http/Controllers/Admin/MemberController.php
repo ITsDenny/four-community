@@ -3,15 +3,18 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Level;
 use App\Models\Member;
 use Illuminate\Http\Request;
 
 class MemberController extends Controller
 {
     public function __construct(
-        protected Member $memberModel
+        protected Member $memberModel,
+        protected Level $levelModel
     ) {
         $this->memberModel = $memberModel;
+        $this->levelModel = $levelModel;
     }
 
     public function store(Request $request)
@@ -21,9 +24,9 @@ class MemberController extends Controller
             'nik' => 'required|string',
             'gender' => 'required',
             'birth_date' => 'required|string|date_format:Y-m-d',
-            'place_of_birth' => 'required|string|min:6',
-            'address' => 'required|string|min:10',
-            'tatus' => 'nullable|boolean',
+            'place_of_birth' => 'required|string|min:1',
+            'address' => 'required|string|min:1',
+            'status' => 'nullable|boolean',
             'level_id' => 'required|exists:level,id',
             'email' => 'required|email',
         ]);
@@ -35,26 +38,28 @@ class MemberController extends Controller
             'birth_date' => $request->birth_date,
             'place_of_birth' => $request->place_of_birth,
             'address' => $request->address,
-            'tatus' => true,
+            'status' => true,
             'level_id' => $request->level_id,
             'email' => $request->email,
             'password' => bcrypt('12345678'),
             'picture' => 'asset_url'
         ];
+
+
         $save = $this->memberModel->create($data);
 
         if (!$save) {
-            session()->flash('error', 'Failed insert data!');
+            return redirect('member/add-member')->with('error', 'Failed insert data!');
         } else {
-            session()->flash('success', 'Data added successfully!');
+            return redirect('member/add-member')->with('success', 'Data added successfully!');
         }
-
-        return redirect('member/add-member');
     }
 
     public function memberForm()
     {
-        return view('admin.member.add_member_form');
+        $levels = $this->levelModel->get();
+
+        return view('admin.member.add_member_form', compact('levels'));
     }
 
     public function delete($id)
@@ -66,7 +71,47 @@ class MemberController extends Controller
         return redirect('/admin/member-list')->with('success', 'Data deleted successfully');
     }
 
-    public function update($id)
+    public function update(Request $request, $id)
     {
+        $request->validate([
+            'name' => 'nullable|string|min:3',
+            'nik' => 'nullable|string',
+            'gender' => 'nullable',
+            'birth_date' => 'nullable|string|date_format:Y-m-d',
+            'place_of_birth' => 'nullable|string|min:6',
+            'address' => 'nullable|string|min:10',
+            'level_id' => 'nullable|exists:level,id',
+            'email' => 'unique:App\Models\Member,email'
+        ]);
+
+        $data = [
+            'name' => $request->name,
+            'nik' => $request->nik,
+            'gender' => $request->gender,
+            'birth_date' => $request->birth_date,
+            'place_of_birth' => $request->place_of_birth,
+            'address' => $request->address,
+            'status' => true,
+            'level_id' => $request->level_id,
+            'email' => $request->email,
+            'password' => bcrypt('12345678'),
+            'picture' => 'asset_url'
+        ];
+
+
+        $save = $this->memberModel->create($data);
+
+        if (!$save) {
+            return redirect('admin/member-list')->with('error', 'Failed update data!');
+        } else {
+            return redirect('admin/member-list')->with('success', 'Data updated successfully!');
+        }
+    }
+
+    public function getOne($id)
+    {
+        $member = $this->memberModel->where('id', $id)->first();
+
+        return view('admin.member_table', compact('member'));
     }
 }

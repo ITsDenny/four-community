@@ -71,9 +71,9 @@
                                 <div class="col-sm-10">
                                     <select id="level_id" class="form-select" name="level_id" aria-label="Select level">
                                         <option selected>Level</option>
-                                        <option value=1>Admin</option>
-                                        <option value=2>Moderator</option>
-                                        <option value=3>Member</option>
+                                        @foreach ($levels as $level)
+                                            <option value="{{ $level->id }}">{{ $level->name }}</option>
+                                        @endforeach 
                                     </select>
                                 </div>
                             </div>
