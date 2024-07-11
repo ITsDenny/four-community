@@ -5,6 +5,7 @@ use App\Http\Controllers\LevelController;
 use App\Http\Controllers\Admin\MemberController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\GroupController;
+use App\Http\Controllers\grupaController;
 use App\Http\Controllers\WebAdminController;
 use Illuminate\Support\Facades\Route;
 
@@ -41,3 +42,5 @@ Route::prefix('auth')->controller(AuthController::class)->group(function () {
 Route::get('admin/group/list', [GroupController::class, 'getAllGroup']);
 Route::get('admin/group/add', [GroupController::class, 'addGroupForm']);
 Route::post('admin/group', [GroupController::class, 'store']);
+
+route:: resource('admin/grup',grupaController::class);

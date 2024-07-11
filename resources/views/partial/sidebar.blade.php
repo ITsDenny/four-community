@@ -41,7 +41,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="list">
+                        <a href="admin/grup">
                             <i class="bi bi-circle"></i><span>Tabel Group</span>
                         </a>
                     </li>
