@@ -22,8 +22,8 @@
                         </a>
                     </li>
                     <li>
-                        <a href="/admin/group/add">
-                            <i class="bi bi bi-building-add" style="font-size: 20px;"></i><span>Tambah Group</span>
+                        <a href="/level/add-level">
+                            <i class="bi bi-person-fill-add" style="font-size: 20px;"></i><span>level</span>
                         </a>
                     </li>
                 </ul>
@@ -59,4 +59,6 @@
 
             </li><!-- End Tables Nav -->
             
+    
+
     </aside><!-- End Sidebar-->
