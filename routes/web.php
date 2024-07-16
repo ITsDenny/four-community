@@ -14,7 +14,8 @@ Route::get('/', function () {
 
 Route::get('/admin', [WebAdminController::class, 'hello']);
 Route::get('/admin/member-list', [WebAdminController::class, 'getMember']);
-Route::get('/admin/level/add', [LevelController::class, 'getLevelForm']);
+Route::get('/admin/level-list', [LevelController::class, 'getLevel']);
+Route::get('/admin/level/add', [LevelController::class, 'getLevel']);
 
 
 Route::prefix('admin')->controller(WebAdminController::class)->group(function () {
@@ -32,7 +33,9 @@ Route::prefix('member')->controller(MemberController::class)->group(function () 
 Route::prefix('level')->controller(LevelController::class)->group(function () {
     Route::get('/add-level', 'levelform');
     Route::post('/submit-level', 'store')->name('submit-level');
-    Route::get('/', 'getAllLevel');
+    Route::delete('/{id}/delete', 'delete')->name('delete-level');
+    Route::put('/{id}/update', 'update')->name('update-level');
+    Route::get('/level-list', 'getLevel');
 });
 Route::prefix('auth')->controller(AuthController::class)->group(function () {
     Route::get('/login', 'getLoginForm');

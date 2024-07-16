@@ -19,18 +19,6 @@ class MemberController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required|string|min:3',
-            'nik' => 'required|string',
-            'gender' => 'required',
-            'birth_date' => 'required|string|date_format:Y-m-d',
-            'place_of_birth' => 'required|string|min:1',
-            'address' => 'required|string|min:1',
-            'status' => 'nullable|boolean',
-            'level_id' => 'required|exists:level,id',
-            'email' => 'required|email',
-        ]);
-
         $data = [
             'name' => $request->name,
             'nik' => $request->nik,

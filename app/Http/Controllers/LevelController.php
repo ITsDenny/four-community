@@ -23,12 +23,6 @@ class LevelController extends Controller
 
     public function store(Request $request)
     {
-
-        $request->validate([
-            'name' => 'required|min:20',
-            'description' => 'required|min:20',
-        ]);
-
         $data = [
             'name' => $request->name,
             'description' => $request->description,
@@ -36,7 +30,16 @@ class LevelController extends Controller
 
         $save = $this->levelModel->create($data);
 
+        if (!$save) return back()->with('error', 'Failed insert data!');
 
-        return redirect()->route('add_level_form')->with(['success' => 'data berhasil di input']);
+        return redirect('/admin/level-list')->with('success', 'Data deleted successfully');
+    }
+    public function update(Request $request, $id)
+    {
+        $this->levelModel->update->where('id', $id)->update([
+            'name' => $request->name,
+            'description' => $request->description,
+        ]);
+        return redirect('admin.level_table')->with('success', 'Data deleted successfully');
     }
 }
