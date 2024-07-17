@@ -42,9 +42,10 @@ class GroupController extends Controller
     {
        $data =[
             'name' => $request->name,
-            'status' => true
+            'status' => $request->status
        ];
         $save = $this->groupModel->where('id', $id)->update($data);
+        
         if (!$save) {
             return redirect('admin/group-list')->with('error', 'Failed update data!');
         } else {

@@ -17,7 +17,7 @@ class MemberSeeder extends Seeder
     {
         $faker = Faker::create();
 
-        foreach (range(1, 50) as $index) {
+        foreach (range(1, 10) as $index) {
             DB::table('members')->insert([
                 'name' => $faker->name,
                 'nik' => $this->generateRandomNumber(16),
