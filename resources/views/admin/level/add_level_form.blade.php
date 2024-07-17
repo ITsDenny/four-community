@@ -4,6 +4,8 @@
 <section class="section">
       <div class="row">
         <div class="col-lg-10">
+        <button type="button" class="btn-close" data-bs-dismiss="member" aria-label="Close"></button>
+        </div>
 
           <div class="card">
             <div class="card-body">
@@ -11,7 +13,7 @@
 
               <!-- General Form Elements -->
               
-              <form action="{{ route('submit-level') }}" method="POST" enctype="multipart/form-data">
+              <form action="{{ route('submit-level') }}" method="POST">
                             @csrf
               
                             <div class="row mb-3">

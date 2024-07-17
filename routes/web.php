@@ -35,8 +35,9 @@ Route::prefix('level')->controller(LevelController::class)->group(function () {
     Route::get('/add-level', 'levelform');
     Route::post('/submit-level', 'store')->name('submit-level');
     Route::delete('/{id}/delete', 'delete')->name('delete-level');
-    Route::put('/{id}/update', 'update')->name('update-level');
+    Route::put('/update-level/{id}', 'update')->name('update-level');
     Route::get('/level-list', 'getLevel');
+    Route::get('{id}', 'getOne');
 });
 Route::prefix('auth')->controller(AuthController::class)->group(function () {
     Route::get('/login', 'getLoginForm');

@@ -61,17 +61,7 @@ class MemberController extends Controller
 
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'name' => 'nullable|string|min:3',
-            'nik' => 'nullable|string',
-            'gender' => 'nullable',
-            'birth_date' => 'nullable|string|date_format:Y-m-d',
-            'place_of_birth' => 'nullable|string|min:6',
-            'address' => 'nullable|string|min:10',
-            'level_id' => 'nullable|exists:level,id',
-            'email' => 'unique:App\Models\Member,email'
-        ]);
-
+        
         $data = [
             'name' => $request->name,
             'nik' => $request->nik,

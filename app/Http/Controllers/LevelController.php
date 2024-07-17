@@ -16,9 +16,9 @@ class LevelController extends Controller
         $this->levelModel = $levelModel;
     }
 
-    public function getLevelForm()
+    public function LevelForm()
     {
-        return view('add_level_form');
+        return view('admin.level.add_level_form');
     }
 
     public function store(Request $request)
@@ -28,7 +28,7 @@ class LevelController extends Controller
             'description' => $request->description,
         ];
 
-        $save = $this->levelModel->create($data);
+        $save = $this->levelModel->insert($data);
 
         if (!$save) return back()->with('error', 'Failed insert data!');
 
@@ -36,10 +36,39 @@ class LevelController extends Controller
     }
     public function update(Request $request, $id)
     {
-        $this->levelModel->update->where('id', $id)->update([
+       $data =[
             'name' => $request->name,
             'description' => $request->description,
-        ]);
-        return redirect('admin.level_table')->with('success', 'Data deleted successfully');
+       ];
+        $save = $this->levelModel->where('id', $id)->update($data);
+        if (!$save) {
+            return redirect('admin/level-list')->with('error', 'Failed update data!');
+        } else {
+            return redirect('admin/level-list')->with('success', 'Data updated successfully!');
+        }
     }
+    public function delete($id)
+    {
+        $delete = $this->levelModel->where('id', $id)->delete();
+
+        if (!$delete) return back()->with('error', 'Failed insert data!');
+
+        return redirect('/admin/level-list')->with('success', 'Data deleted successfully');
+    }
+
+
+
+    public function getLevel()
+    {
+        $data=$this->levelModel->get();
+
+        return view('admin.level_table', compact('data'));
+    }
+    public function getOne($id)
+    {
+        $level = $this->levelModel->where('id', $id)->first();
+
+        return view('admin.level_table', compact('level'));
+    }
+    
 }
