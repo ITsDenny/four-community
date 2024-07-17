@@ -26,7 +26,7 @@
                             <label for="inputText" class="col-sm-2 col-form-label">status</label>
                             <div  class="col-sm-10">
                                             <input type="checkbox" name='status'>
-                                            <span class="slider round"></span>
+                                            
                               </div>
                             
                             
