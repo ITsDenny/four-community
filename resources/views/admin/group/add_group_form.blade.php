@@ -25,16 +25,19 @@
                         <div class="row mb-3">
                             <label for="inputText" class="col-sm-2 col-form-label">status</label>
                             <div class="col-sm-10">
-                                <input type="checkbox" name='status'>
+                            <div class="form-check form-switch">
+                               <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
                                 <span class="slider round"></span>
-                            </div>
-                            <div class="row mb-3">
-                                <label class="col-sm-2 col-form-label">Submit Button</label>
-                                <div class="col-sm-10">
-                                    <button type="submit" class="btn btn-primary">Submit Form</button>
                                 </div>
-                            </div>
-                    </form><!-- End General Form Elements -->
+</div>
+                  <div class="row mb-3">
+                  <label class="col-sm-2 col-form-label">Submit Button</label>
+                  <div class="col-sm-10">
+                    <button type="submit" class="btn btn-primary">Submit Form</button>
+                  </div>
+                </div>
+                </form><!-- End General Form Elements -->
+                  
 
 </main>
 @include('partial.footer')
