@@ -56,47 +56,51 @@
 
       <!-- update member modal -->
       <div class="modal fade" id="verticalycentered" tabindex="-1">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Form update group</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <form action="{{ route('update-group',['id' => $group?->id]) }}" method="POST" >
-                            @csrf
-                            @method('PUT')
-                            <div class="row mb-3">
-                                <label for="inputText" class="col-sm-2 col-form-label">name</label>
-                                <div class="col-sm-10">
-                                    <input type="text" name="name" class="form-control" value="{{ $group->name }}">
-                                </div>
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Form update group</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    @if(isset($group))
+                    <form action="{{ route('update-group', ['id' => $group->id]) }}">
+                        @csrf
+                        @method('PUT')
+    
+                        <div class="row mb-3">
+                            <label for="inputText" class="col-sm-2 col-form-label">Name</label>
+                            <div class="col-sm-10">
+                                <input type="text" name="name" class="form-control" value="{{ $group->name }}">
                             </div>
-                            
-                            <div class="row mb-3">
-                            <label for="inputText" class="col-sm-2 col-form-label">status</label>
-                            <div  class="col-sm-10">
-                                            <input type="checkbox" name='status'>
-                                            
-                              </div>
+                        </div>
+    
+                        <div class="row mb-3">
+                            <label for="inputText" class="col-sm-2 col-form-label">Status</label>
+                            <div class="col-sm-10">
+                                <input type="checkbox" name="status" {{ $group->status ? 'checked' : '' }}>
                             </div>
-
-                    
-                            <div class="row mb-3">
-                                <label class="col-sm-2 col-form-label">Submit</label>
-                                <div class="col-sm-10">
-                                    <button type="submit" class="btn btn-primary">Submit</button>
-                                </div>
+                        </div>
+    
+                        <div class="row mb-3">
+                            <label class="col-sm-2 col-form-label">Submit</label>
+                            <div class="col-sm-10">
+                                <button type="submit" class="btn btn-primary">Submit</button>
                             </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
-                    </div>
+                        </div>
+                    </form>
+                    @else
+                    <p>No group data available.</p>
+                    @endif
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
                 </div>
             </div>
-        </div><!-- End update member modal-->
+        </div>
+    </div>
+    <!-- End update member modal-->
     </section>
 </main>
 

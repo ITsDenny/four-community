@@ -55,4 +55,4 @@ Route::prefix('group')->controller(GroupController::class)->group(function () {
 });
 
 
-route:: resource('admin/grup',grupaController::class);
+// route:: resource('admin/grup',grupaController::class);
