@@ -42,7 +42,7 @@ class GroupController extends Controller
     {
        $data =[
             'name' => $request->name,
-            'status' => $request->status
+            'status' => true
        ];
         $save = $this->groupModel->where('id', $id)->update($data);
         
