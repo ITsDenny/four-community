@@ -18,7 +18,7 @@
                 <ul id="reference-table" class="nav-content collapse" data-bs-parent="#sidebar-nav">
                    
                     <li>
-                        <a href="admin/grup">
+                        <a href="/admin/group-list">
                             <i class="bi bi-circle"></i><span>Tabel Group</span>
                         </a>
                     </li>
