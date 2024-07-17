@@ -28,8 +28,6 @@ class MemberSeeder extends Seeder
                 'level_id' => $faker->numberBetween(1, 3),
                 'status' => $faker->boolean,
                 'picture' => $faker->imageUrl(640, 480, 'people', true),
-                'email' => $faker->email,
-                'password' => '$2a$12$2HMUBXVc68mnYAQKmnezu.dN99H6XrMg8TKpkM6.obPjYofN1wjNu',
                 'created_at' => now(),
                 'updated_at' => now()
             ]);

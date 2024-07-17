@@ -22,8 +22,6 @@ return new class extends Migration
             $table->boolean('status')->default(true);
             $table->string('picture');
             $table->foreignId('level_id')->references('id')->on('level');
-            $table->string('email')->unique();
-            $table->string('password');
             $table->timestamps();
         });
     }
