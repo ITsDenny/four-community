@@ -5,7 +5,6 @@ use App\Http\Controllers\LevelController;
 use App\Http\Controllers\Admin\MemberController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\GroupController;
-use App\Http\Controllers\grupaController;
 use App\Http\Controllers\WebAdminController;
 use Illuminate\Support\Facades\Route;
 

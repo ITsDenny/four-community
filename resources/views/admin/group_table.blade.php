@@ -12,6 +12,7 @@
                           <button type="button" class="btn btn-primary mt-2 " >
                                             <i class="bi bi-person-fill-add"></i>
                                         </button>
+                                        </a>       
 
                             <thead>
                                 <tr>
@@ -64,7 +65,7 @@
                 </div>
                 <div class="modal-body">
                     @if(isset($group))
-                    <form action="{{ route('update-group', ['id' => $group->id]) }}">
+                    <form action="{{ route('update-group', ['id' => $group->id]) }}"method="POST">
                         @csrf
                         @method('PUT')
     
