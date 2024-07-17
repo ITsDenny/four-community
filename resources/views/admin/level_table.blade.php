@@ -10,23 +10,23 @@
                             <thead>
                                 <tr>
                                     <th>Name</th>
-                                    <th>NIK</th>
-                                    <th>Jenis Kelamin</th>
-                                    <th data-type="date" data-format="YYYY/MM/DD">Tgl Lahir</th>
+                                    <th></th>
+                                    <th>Description</th>
+                                    <th></th>
                                     <th>Status</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($data as $member)
+                                @foreach ($data as $level)
                                 <tr>
-                                    <td>{{ $member->name }}</td>
-                                    <td>{{ $member->nik }}</td>
-                                    <td>{{ $member->gender === 'L' ? 'Laki-Laki' : 'Perempuan' }}</td>
-                                    <td>{{ $member->birth_date }}</td>
+                                    <td>{{ $level->name }}</td>
+                                    <td></td>
+                                    <td>{{ $level->description }}</td>
+                                    <td></td>
                                     <td>
                                         <label class="switch">
-                                            <input type="checkbox" {{ $member->status ? 'checked' : '' }} disabled>
+                                            <input type="checkbox" {{ $level->status ? 'checked' : '' }} disabled>
                                             <span class="slider round"></span>
                                         </label>
                                     </td>
@@ -35,7 +35,7 @@
                                             data-bs-target="#verticalycentered">
                                             <i class="bi bi-pencil-square"></i>
                                         </button>
-                                        <form action="/member/{{ $member->id }}/delete" method="POST"
+                                        <form action="/level/{{ $level->id }}/delete" method="POST"
                                             style="display:inline;">
                                             @csrf
                                             @method('DELETE')
@@ -59,79 +59,40 @@
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Form update member</h5>
+                        <h5 class="modal-title">Form update level</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form action="{{ route('update-member', ['id' => $member->id]) }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('submit-level') }}" method="POST" enctype="multipart/form-data">
                             @csrf
-                            @method('PUT')
                             <div class="row mb-3">
                                 <label for="inputText" class="col-sm-2 col-form-label">Name</label>
                                 <div class="col-sm-10">
-                                    <input type="text" name="name" class="form-control" value="{{ $member->name }}"> 
+                                    <input type="text" name="name" class="form-control">
                                 </div>
                             </div>
                             <div class="row mb-3">
                                 <label for="inputText" class="col-sm-2 col-form-label">Email</label>
-                                <div class="col-sm-10">
-                                    <input type="text" name="email" class="form-control" value="{{ $member->email }}">
+                                <div class="col-sm-1">
+                                    <input type="text" name="email" class="form-control">
                                 </div>
                             </div>
+                            
                             <div class="row mb-3">
-                                <label for="inputText" class="col-sm-2 col-form-label">NIK</label>
+                                <label class="col-sm-2 col-form-label">Submit</label>
                                 <div class="col-sm-10">
-                                    <input type="text" name="nik" class="form-control" value="{{ $member->nik }}">
+                                    <button type="submit" class="btn btn-primary">Submit</button>
                                 </div>
                             </div>
-                            <div class="row mb-3">
-                                <label for="inputDate" class="col-sm-2 col-form-label">Birth of Date</label>
-                                <div class="col-sm-10">
-                                    <input type="text" name="birth_date" class="form-control" value="{{ $member->birth_date }}">
-                                </div>
-                            </div>
-                            <div class="row mb-3">
-                                <label for="inputText" class="col-sm-2 col-form-label">Place Of Birth</label>
-                                <div class="col-sm-10">
-                                    <input type="text" name="place_of_birth" class="form-control" value="{{ $member->place_of_birth }}">
-                                </div>
-                            </div>
-                            <div class="row mb-3">
-                                <label for="inputText" class="col-sm-2 col-form-label">Address</label>
-                                <div class="col-sm-10">
-                                    <input type="text" name="address" class="form-control" value="{{ $member->address }}">
-                                </div>
-                            </div>
-                            <div class="row mb-3">
-                                <label class="col-sm-2 col-form-label">Gender</label>
-                                <div class="col-sm-10">
-                                    <select class="form-select" name="gender" aria-label="Select gender">
-                                        <option selected>{{ $member->gender === 'L' ? 'Laki-Laki' : 'Perempuan' }}</option>
-                                        <option value="P">Perempuan</option>
-                                        <option value="L">Laki-Laki</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="row mb-3">
-                                <label class="col-sm-2 col-form-label">Level</label>
-                                <div class="col-sm-10">
-                                    <select class="form-select" name="level_id" aria-label="Select level">
-                                        <option value=1 {{ $member->level_id == 1 ? 'selected' : '' }}>Admin</option>
-                                        <option value=2 {{ $member->level_id == 2 ? 'selected' : '' }}>Moderator</option>
-                                        <option value=3 {{ $member->level_id == 3 ? 'selected' : '' }}>Member</option>
-                                    </select>
-                                </div>
-                            </div>
+                        </form>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Save changes</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
                     </div>
-                </form>
                 </div>
             </div>
-        </div>
-        <!-- End update member modal-->
+        </div><!-- End update member modal-->
     </section>
 </main>
 
