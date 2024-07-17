@@ -46,7 +46,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="/admin/user-list">
+                        <a href="/admin/add-user">
                             <i class="bi bi-circle"></i><span>Tabel User</span>
                         </a>
                     </li>
