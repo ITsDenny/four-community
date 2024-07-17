@@ -61,7 +61,7 @@ class MemberController extends Controller
 
     public function update(Request $request, $id)
     {
-        
+
         $data = [
             'name' => $request->name,
             'nik' => $request->nik,
@@ -91,5 +91,12 @@ class MemberController extends Controller
         $member = $this->memberModel->where('id', $id)->first();
 
         return view('admin.member_table', compact('member'));
+    }
+
+    public function getAllMember()
+    {
+        $member = $this->memberModel->select('id', 'name')->get();
+
+        return $member;
     }
 }

@@ -9,11 +9,11 @@
                         <table class="datatable">
                           <div class="card-body">
                           <a href="/member/add-member">
-                          <button type="button" class="btn btn-primary mt-2" >
-                                            <i class="bi bi-person-fill-add"></i>
-                                        </button>
-                        </a>
 
+                        <button type="button" class="btn btn-primary mt-2" >
+                            <i class="bi bi-person-fill-add"></i>
+                        </button>
+                        </a>
                             <thead>
                                 <tr>
                                     <th>Name</th>

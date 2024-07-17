@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\MemberController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\grupaController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\WebAdminController;
 use Illuminate\Support\Facades\Route;
 
@@ -54,5 +55,11 @@ Route::prefix('group')->controller(GroupController::class)->group(function () {
     Route::get('{id}', 'getOne');
 });
 
-
-// route:: resource('admin/grup',grupaController::class);
+Route::prefix('user')->controller(UserController::class)->group(function () {
+    Route::get('/user-form', 'getUserForm');
+    Route::get('/user-list', 'getUserList');
+    Route::get('/user-table', 'getUserTable');
+    Route::get('/{id}', 'getOneUser');
+    Route::put('/{id}', 'update')->name('update-user');
+    Route::post('/add-user', 'store')->name('add-user');
+});
