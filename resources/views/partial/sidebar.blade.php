@@ -16,14 +16,20 @@
                         class="bi bi-chevron-down ms-auto"></i>
                 </a>
                 <ul id="reference-table" class="nav-content collapse" data-bs-parent="#sidebar-nav">
+                   
                     <li>
-                        <a href="/member/add-member">
-                            <i class="bi bi-person-fill-add" style="font-size: 20px;"></i><span>Tambah Anggota</span>
+                        <a href="/admin/group-list">
+                            <i class="bi bi-circle"></i><span>Tabel Group</span>
                         </a>
                     </li>
                     <li>
-                        <a href="/level/add-level">
-                            <i class="bi bi-person-fill-add" style="font-size: 20px;"></i><span>level</span>
+                        <a href="/admin/level-list">
+                            <i class="bi bi-circle"></i><span>Tabel Level</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/admin/user-list">
+                            <i class="bi bi-circle"></i><span>Tabel User</span>
                         </a>
                     </li>
                 </ul>
@@ -40,21 +46,7 @@
                             <i class="bi bi-circle"></i><span>Tabel Anggota</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="list">
-                            <i class="bi bi-circle"></i><span>Tabel Group</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/admin/level-list">
-                            <i class="bi bi-circle"></i><span>Tabel Level</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/admin/add-user">
-                            <i class="bi bi-circle"></i><span>Tabel User</span>
-                        </a>
-                    </li>
+                  
                 </ul>
 
             </li><!-- End Tables Nav -->

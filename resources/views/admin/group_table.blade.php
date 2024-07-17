@@ -6,7 +6,13 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
-                        <table class="datatable">
+                        <table class="datatable"> 
+                            <div class="card-body">
+                          <a href="/group/add-group">
+                          <button type="button" class="btn btn-primary mt-2 " >
+                                            <i class="bi bi-person-fill-add"></i>
+                                        </button>
+
                             <thead>
                                 <tr>
                                     <th>Name</th>
@@ -15,12 +21,12 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($groups as $group)
+                                @foreach ($data as $group)
                                 <tr>
                                     <td>{{ $group->name }}</td>
                                     <td>
                                         <label class="switch">
-                                            <input type="checkbox" {{ $group->status ? 'checked' : '' }} disabled>
+                                            <input type="checkbox" {{ $group->status ? 'checked' : '' }} >
                                             <span class="slider round"></span>
                                         </label>
                                     </td>
@@ -29,7 +35,7 @@
                                             data-bs-target="#verticalycentered">
                                             <i class="bi bi-pencil-square"></i>
                                         </button>
-                                        <form action="/member/{{ $group->id }}/delete" method="POST"
+                                        <form action="/group/{{ $group->id }}/delete" method="POST"
                                             style="display:inline;">
                                             @csrf
                                             @method('DELETE')
@@ -48,72 +54,38 @@
             </div>
         </div>
 
-        <!-- update member modal -->
-        <div class="modal fade" id="verticalycentered" tabindex="-1">
+      <!-- update member modal -->
+      <div class="modal fade" id="verticalycentered" tabindex="-1">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Form update member</h5>
+                        <h5 class="modal-title">Form update group</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form action="{{ route('submit-member') }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('update-group',['id' => $group?->id]) }}" method="POST" >
                             @csrf
+                            @method('PUT')
                             <div class="row mb-3">
-                                <label for="inputText" class="col-sm-2 col-form-label">Name</label>
+                                <label for="inputText" class="col-sm-2 col-form-label">name</label>
                                 <div class="col-sm-10">
-                                    <input type="text" name="name" class="form-control">
+                                    <input type="text" name="name" class="form-control" value="{{ $group->name }}">
                                 </div>
                             </div>
+                            
                             <div class="row mb-3">
-                                <label for="inputText" class="col-sm-2 col-form-label">Email</label>
-                                <div class="col-sm-10">
-                                    <input type="text" name="email" class="form-control">
-                                </div>
-                            </div>
-                            <div class="row mb-3">
-                                <label for="inputText" class="col-sm-2 col-form-label">NIK</label>
-                                <div class="col-sm-10">
-                                    <input type="text" name="nik" class="form-control">
-                                </div>
-                            </div>
-                            <div class="row mb-3">
-                                <label for="inputDate" class="col-sm-2 col-form-label">Birth of Date</label>
-                                <div class="col-sm-10">
-                                  <input type="date" name="birth_date" class="form-control">
-                                </div>
+                            <label for="inputText" class="col-sm-2 col-form-label">status</label>
+                            <div  class="col-sm-10">
+                                            <input type="checkbox" name='status'>
+                                            
                               </div>
-                            <div class="row mb-3">
-                                <label for="inputText" class="col-sm-2 col-form-label">Place Of Birth</label>
-                                <div class="col-sm-10">
-                                    <input type="text" name="place_of_birth" class="form-control">
-                                </div>
                             </div>
+
+                    
                             <div class="row mb-3">
-                                <label for="inputText" class="col-sm-2 col-form-label">Address</label>
+                                <label class="col-sm-2 col-form-label">Submit</label>
                                 <div class="col-sm-10">
-                                    <input type="text" name="address" class="form-control">
-                                </div>
-                            </div>
-                            <div class="row mb-3">
-                                <label class="col-sm-2 col-form-label">Gender</label>
-                                <div class="col-sm-10">
-                                    <select class="form-select" name="gender" aria-label="Select gender">
-                                        <option selected>Gender</option>
-                                        <option value="P">Perempuan</option>
-                                        <option value="L">Laki-Laki</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="row mb-3">
-                                <label class="col-sm-2 col-form-label">Level</label>
-                                <div class="col-sm-10">
-                                    <select class="form-select" name="level_id" aria-label="Select level">
-                                        <option selected>Level</option>
-                                        <option value=1>Admin</option>
-                                        <option value=2>Moderator</option>
-                                        <option value=3>Member</option>
-                                    </select>
+                                    <button type="submit" class="btn btn-primary">Submit</button>
                                 </div>
                             </div>
                         </form>

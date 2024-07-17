@@ -7,6 +7,13 @@
                 <div class="card">
                     <div class="card-body">
                         <table class="datatable">
+                          <div class="card-body">
+                          <a href="/member/add-member">
+                          <button type="button" class="btn btn-primary mt-2" >
+                                            <i class="bi bi-person-fill-add"></i>
+                                        </button>
+                        </a>
+
                             <thead>
                                 <tr>
                                     <th>Name</th>
@@ -63,7 +70,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form action="{{ route('update-member', ['id' => $member->id]) }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('update-member', ['id' => $member?->id]) }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
                             <div class="row mb-3">

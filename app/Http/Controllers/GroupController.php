@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Group;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
+use Illuminate\Http\RedirectResponse;
+use App\Http\Controllers\Controller;
+
 
 class GroupController extends Controller
 {
@@ -13,37 +17,59 @@ class GroupController extends Controller
         $this->groupModel = $groupModel;
     }
 
-    public function addGroupForm()
+    public function GroupForm()
     {
-        return view("add_group_form");
+        return view("admin.group.add_group_form");
     }
 
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required|string|min:6',
-        ]);
-
+       
         $data = [
             'name' => $request->name,
             'status' => true
         ];
 
-        $save = $this->groupModel->create($data);
+        $save = $this->groupModel->insert($data);
 
+        if (!$save) return back()->with('error', 'Failed insert data!');
+
+        return redirect('/admin/group-list')->with('success', 'Data deleted successfully');
+        
+
+    }
+    public function update(Request $request, $id)
+    {
+       $data =[
+            'name' => $request->name,
+            'status' => true
+       ];
+        $save = $this->groupModel->where('id', $id)->update($data);
         if (!$save) {
-            return redirect('admin/group/add')->with('error', 'Failed insert data!');
+            return redirect('admin/group-list')->with('error', 'Failed update data!');
         } else {
-            return redirect('admin/group/add')->with('success', 'Data added successfully!');
+            return redirect('admin/group-list')->with('success', 'Data updated successfully!');
         }
+    }
+    public function delete($id)
+    {
+        $delete = $this->groupModel->where('id', $id)->delete();
 
-        return view('admin.group.group_table');
+        if (!$delete) return back()->with('error', 'Failed insert data!');
+
+        return redirect('/admin/group-list')->with('success', 'Data deleted successfully');
+    }
+    public function getGroup()
+    {
+        $data=$this->groupModel->get();
+
+        return view('admin.group_table', compact('data'));
     }
 
-    public function getAllGroup()
+    public function getOne($id)
     {
-        $groups = $this->groupModel->get();
+        $level = $this->groupModel->where('id', $id)->first();
 
-        return view('admin.group.group_table', compact('groups'));
+        return view('admin.group_table', compact('level'));
     }
 }

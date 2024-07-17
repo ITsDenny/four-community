@@ -6,7 +6,13 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
-                        <table class="datatable">
+                    <table class="datatable">
+                          <div class="card-body">
+                          <a href="/level/add-level">
+                          <button type="button" class="btn btn-primary mt-2 " >
+                                            <i class="bi bi-person-fill-add"></i>
+                                        </button>
+</a>
                             <thead>
                                 <tr>
                                     <th>Name</th>
@@ -63,18 +69,19 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form action="{{ route('submit-level') }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('update-level',['id' => $level?->id]) }}" method="POST" >
                             @csrf
+                            @method('PUT')
                             <div class="row mb-3">
-                                <label for="inputText" class="col-sm-2 col-form-label">Name</label>
+                                <label for="inputText" class="col-sm-2 col-form-label">name</label>
                                 <div class="col-sm-10">
-                                    <input type="text" name="name" class="form-control">
+                                    <input type="text" name="name" class="form-control" value="{{ $level->name }}">
                                 </div>
                             </div>
                             <div class="row mb-3">
-                                <label for="inputText" class="col-sm-2 col-form-label">Email</label>
-                                <div class="col-sm-1">
-                                    <input type="text" name="email" class="form-control">
+                                <label for="inputText" class="col-sm-2 col-form-label">description</label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="description" class="form-control"value="{{ $level->description }}">
                                 </div>
                             </div>
                             

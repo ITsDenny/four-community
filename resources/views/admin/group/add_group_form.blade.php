@@ -9,11 +9,11 @@
 
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">Level form</h5>
+              <h5 class="card-title">Group form</h5>
 
               <!-- General Form Elements -->
               
-              <form action="{{ route('submit-level') }}" method="POST">
+              <form action="{{ route('submit-group') }}" method="POST">
                             @csrf
               
                             <div class="row mb-3">
@@ -23,11 +23,14 @@
                                 </div>
                             </div>
                             <div class="row mb-3">
-                                <label for="inputText" class="col-sm-2 col-form-label">description</label>
-                                <div class="col-sm-10">
-                                    <input type="text" name="description" class="form-control">
-                                </div>
-                            </div>
+                            <label for="inputText" class="col-sm-2 col-form-label">status</label>
+                            <div  class="col-sm-10">
+                                            <input type="checkbox" name='status'>
+                                            <span class="slider round"></span>
+                              </div>
+                            
+                            
+                                      
                   <div class="row mb-3">
                   <label class="col-sm-2 col-form-label">Submit Button</label>
                   <div class="col-sm-10">
