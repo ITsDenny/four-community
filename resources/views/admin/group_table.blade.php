@@ -3,17 +3,15 @@
 <main class="main" id="main">
     <section class="section">
         <div class="row">
-            <div class="col-lg-12">
+            <div class="col-lg-10">
                 <div class="card">
                     <div class="card-body">
-                        <table class="datatable"> 
-                            <div class="card-body">
-                          <a href="/group/add-group">
-                          <button type="button" class="btn btn-primary mt-2 " >
-                                            <i class="bi bi-person-fill-add"></i>
-                                        </button>
-                                        </a>       
-
+                        <table class="table"> 
+                                <a href="/group/add-group">
+                                    <button type="button" class="btn btn-primary mt-2 mb-2 col-lg-2" >
+                                         <i class="bi bi-patch-plus-fill"></i> Add Group
+                                    </button>
+                                </a> 
                             <thead>
                                 <tr>
                                     <th>Name</th>

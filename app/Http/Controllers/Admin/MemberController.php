@@ -61,7 +61,6 @@ class MemberController extends Controller
 
     public function update(Request $request, $id)
     {
-
         $data = [
             'name' => $request->name,
             'nik' => $request->nik,
@@ -75,9 +74,7 @@ class MemberController extends Controller
             'password' => bcrypt('12345678'),
             'picture' => 'asset_url'
         ];
-
-
-        $save = $this->memberModel->create($data);
+        $save = $this->memberModel->where('id', $id)->update($data);
 
         if (!$save) {
             return redirect('admin/member-list')->with('error', 'Failed update data!');

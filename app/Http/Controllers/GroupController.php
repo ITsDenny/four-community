@@ -24,10 +24,10 @@ class GroupController extends Controller
 
     public function store(Request $request)
     {
-       
+
         $data = [
             'name' => $request->name,
-            'status' => true
+            'status' => $request->status
         ];
 
         $save = $this->groupModel->insert($data);
@@ -35,17 +35,15 @@ class GroupController extends Controller
         if (!$save) return back()->with('error', 'Failed insert data!');
 
         return redirect('/admin/group-list')->with('success', 'Data deleted successfully');
-        
-
     }
     public function update(Request $request, $id)
     {
-       $data =[
+        $data = [
             'name' => $request->name,
-            'status' => true
-       ];
+            'status' => $request->status
+        ];
         $save = $this->groupModel->where('id', $id)->update($data);
-        
+
         if (!$save) {
             return redirect('admin/group-list')->with('error', 'Failed update data!');
         } else {
@@ -62,7 +60,7 @@ class GroupController extends Controller
     }
     public function getGroup()
     {
-        $data=$this->groupModel->get();
+        $data = $this->groupModel->get();
 
         return view('admin.group_table', compact('data'));
     }

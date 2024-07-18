@@ -46,7 +46,9 @@
                                             style="display:inline;">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-danger"
+                                            <button 
+                                                type="submit" 
+                                                class="btn btn-danger"
                                                 onclick="return confirm('Are you sure you want to delete this member?');">
                                                 <i class="bi bi-trash-fill"></i>
                                             </button>
@@ -187,8 +189,6 @@
     input:checked+.slider:before {
         transform: translateX(14px);
     }
-
-    /* Rounded sliders */
     .slider.round {
         border-radius: 20px;
     }

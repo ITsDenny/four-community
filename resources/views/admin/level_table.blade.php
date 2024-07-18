@@ -6,20 +6,16 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
-                    <table class="datatable">
-                          <div class="card-body">
-                          <a href="/level/add-level">
-                          <button type="button" class="btn btn-primary mt-2 " >
-                                            <i class="bi bi-person-fill-add"></i>
-                                        </button>
-</a>
+                        <table class="table">
+                            <a href="/level/add-level">
+                                <button type="button" class="btn btn-primary mt-2">
+                                    <i class="bi bi-plus"></i>Add Level
+                                </button>
+                            </a>
                             <thead>
                                 <tr>
                                     <th>Name</th>
-                                    <th></th>
                                     <th>Description</th>
-                                    <th></th>
-                                    <th>Status</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -27,15 +23,7 @@
                                 @foreach ($data as $level)
                                 <tr>
                                     <td>{{ $level->name }}</td>
-                                    <td></td>
                                     <td>{{ $level->description }}</td>
-                                    <td></td>
-                                    <td>
-                                        <label class="switch">
-                                            <input type="checkbox" {{ $level->status ? 'checked' : '' }} disabled>
-                                            <span class="slider round"></span>
-                                        </label>
-                                    </td>
                                     <td>
                                         <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                             data-bs-target="#verticalycentered">
@@ -46,7 +34,7 @@
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger"
-                                                onclick="return confirm('Are you sure you want to delete this member?');">
+                                                onclick="return confirm('Are you sure you want to delete this level?');">
                                                 <i class="bi bi-trash-fill"></i>
                                             </button>
                                         </form>
@@ -69,7 +57,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form action="{{ route('update-level',['id' => $level?->id]) }}" method="POST" >
+                        <form action="{{ route('update-level',['id' => $level?->id]) }}" method="POST">
                             @csrf
                             @method('PUT')
                             <div class="row mb-3">
@@ -81,10 +69,11 @@
                             <div class="row mb-3">
                                 <label for="inputText" class="col-sm-2 col-form-label">description</label>
                                 <div class="col-sm-10">
-                                    <input type="text" name="description" class="form-control"value="{{ $level->description }}">
+                                    <input type="text" name="description" class="form-control"
+                                        value="{{ $level->description }}">
                                 </div>
                             </div>
-                            
+
                             <div class="row mb-3">
                                 <label class="col-sm-2 col-form-label">Submit</label>
                                 <div class="col-sm-10">

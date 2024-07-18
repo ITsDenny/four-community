@@ -51,9 +51,7 @@ class UserController extends Controller
 
     public function delete(int $id)
     {
-        $user = $this->userModel->doesntHave('member')->find($id);
-
-        if (!$user) throw new HttpException(422, 'This user already bind to member,cant delete!');
+        $user = $this->userModel->findOrFail($id);
 
         return $user->delete();
     }
