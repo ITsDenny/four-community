@@ -6,6 +6,8 @@ use App\Models\Group;
 use App\Models\Member;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class UserController extends Controller
@@ -25,7 +27,7 @@ class UserController extends Controller
         $user = [
             'name' => $request->name,
             'email' => $request->email,
-            'password' => '$2a$12$wyeCmTLfo0jTiRYoDhxByeblFpBsCYWnykxPGxDruEn0XCNaPc5me',
+            'password' => Hash::make('12345678'),
             'member_id' => $request->member_id,
             'group_id' => $request->group_id
         ];
@@ -80,5 +82,24 @@ class UserController extends Controller
         } else {
             return redirect('user/user-table')->with('success', 'Data updated successfully!');
         }
+    }
+
+    public function login(Request $request)
+    {
+        $email = $request->email;
+        $password = $request->password;
+
+        $emailCheck = $this->userModel->where('email', $email)->first();
+
+        if (!$emailCheck) {
+            return back()->withErrors(['email' => 'Email not found'])->withInput();
+        }
+
+        if (!Hash::check($password, $emailCheck->password)) {
+            return back()->withErrors(['password' => 'Invalid password'])->withInput();
+        }
+        Auth::login($emailCheck);
+
+        return redirect()->intended('admin');
     }
 }

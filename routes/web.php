@@ -10,7 +10,7 @@ use App\Http\Controllers\WebAdminController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('admin.welcome');
+    return view('login.form_login');
 });
 
 Route::get('/admin', [WebAdminController::class, 'hello']);
@@ -62,4 +62,8 @@ Route::prefix('user')->controller(UserController::class)->group(function () {
     Route::put('/{id}', 'update')->name('update-user');
     Route::post('/add-user', 'store')->name('add-user');
     Route::delete('/{id}/delete', 'delete')->name('delete-user');
+});
+
+Route::prefix('auth')->controller(UserController::class)->group(function () {
+    Route::post('/login', 'login')->name('user-login');
 });
