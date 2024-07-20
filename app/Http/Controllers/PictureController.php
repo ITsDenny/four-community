@@ -9,7 +9,7 @@ use Illuminate\Http\UploadedFile;
 
 class PictureController extends Controller
 {
-    public function storePicture(UploadedFile $image, string $folderName, ?Model $data)
+    public function storePicture(?UploadedFile $image, ?string $folderName)
     {
         $fileName = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
 

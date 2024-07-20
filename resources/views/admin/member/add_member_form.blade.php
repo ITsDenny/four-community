@@ -6,7 +6,7 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Tambah Member</h5>
+                        <h5 class="card-title">Add Member</h5>
                         <form action="{{ route('submit-member') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             @if(session()->has('success'))
@@ -71,6 +71,12 @@
                                     </select>
                                 </div>
                             </div>
+                            <div class="row mb-3">
+                                <label for="inputNumber" class="col-sm-2 col-form-label">Profile Picture</label>
+                                <div class="col-sm-10">
+                                  <input class="form-control" type="file" id="formFile" name="picture">
+                                </div>
+                              </div>
                             <div class="row mb-4">
                                 <div class="col-md-4">
                                     <button type="submit" class="btn btn-primary">Submit</button>

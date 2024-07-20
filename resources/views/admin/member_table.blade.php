@@ -14,6 +14,7 @@
                         </a>
                             <thead>
                                 <tr>
+                                    <th>Profile</th>
                                     <th>Name</th>
                                     <th>NIK</th>
                                     <th>Jenis Kelamin</th>
@@ -25,6 +26,7 @@
                             <tbody>
                                 @foreach ($data as $member)
                                 <tr>
+                                    <td><img src="{{ $member->picture }}"  class="img-fluid rounded-circle mb-2" style="width: 7vh; height: 7vh" alt="Profile Picture"></td>
                                     <td>{{ $member->name }}</td>
                                     <td>{{ $member->nik }}</td>
                                     <td>{{ $member->gender === 'L' ? 'Laki-Laki' : 'Perempuan' }}</td>

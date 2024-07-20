@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\PictureController;
 use App\Models\Level;
 use App\Models\Member;
 use Illuminate\Http\Request;
@@ -11,10 +12,12 @@ class MemberController extends Controller
 {
     public function __construct(
         protected Member $memberModel,
-        protected Level $levelModel
+        protected Level $levelModel,
+        protected PictureController $pictureController
     ) {
         $this->memberModel = $memberModel;
         $this->levelModel = $levelModel;
+        $this->pictureController = $pictureController;
     }
 
     public function store(Request $request)
@@ -28,18 +31,29 @@ class MemberController extends Controller
             'address' => $request->address,
             'status' => true,
             'level_id' => $request->level_id,
-            'email' => $request->email,
-            'password' => bcrypt('12345678'),
-            'picture' => 'asset_url'
         ];
+        if ($request->hasFile('picture')) {
+            $image = $request->file('picture');
+            $folderName = 'members'; // Set folder name
+            $fileName = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
 
+            $folderPath = storage_path("app/public/$folderName");
+            if (!is_dir($folderPath)) {
+                mkdir($folderPath, 0777, true);
+            }
+
+            $path = $image->storeAs($folderName, $fileName, 'public');
+            $pictureUrl = asset("storage/$folderName/$fileName");
+
+            $data['picture'] = $pictureUrl;
+        }
 
         $save = $this->memberModel->create($data);
 
         if (!$save) {
             return redirect('member/add-member')->with('error', 'Failed insert data!');
         } else {
-            return redirect('member/add-member')->with('success', 'Data added successfully!');
+            return redirect('admin/member-list')->with('success', 'Data added successfully!');
         }
     }
 
