@@ -24,7 +24,7 @@
                       </select>
                 </div>
                 <div class="col-12">
-                  <select class="form-select" aria-label="Select member" name="member_id">
+                  <select class="form-select" aria-label="Select member" name="group_id">
                       <option selected>Select group to join</option>
                   @foreach ($groups as $group)
                       <option value="{{ $group->id }}">{{ $group->name }}</option>

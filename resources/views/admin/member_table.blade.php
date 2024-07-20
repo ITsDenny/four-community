@@ -7,11 +7,9 @@
                 <div class="card">
                     <div class="card-body">
                         <table class="datatable">
-                          <div class="card-body">
                           <a href="/member/add-member">
-
-                        <button type="button" class="btn btn-primary mt-2" >
-                            <i class="bi bi-person-fill-add"></i>
+                        <button type="button" class="btn btn-primary mt-2 mb-2" >
+                            <i class="bi bi-person-fill-add"></i> Add new member
                         </button>
                         </a>
                             <thead>

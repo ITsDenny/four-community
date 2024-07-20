@@ -26,7 +26,8 @@ class UserController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => '$2a$12$wyeCmTLfo0jTiRYoDhxByeblFpBsCYWnykxPGxDruEn0XCNaPc5me',
-            'member_id' => $request->member_id
+            'member_id' => $request->member_id,
+            'group_id' => $request->group_id
         ];
 
         $newUser = $this->userModel->create($user);
@@ -55,9 +56,7 @@ class UserController extends Controller
 
     public function delete(int $id)
     {
-        $user = $this->userModel->findOrFail($id);
-
-        return $user->delete();
+        return $this->userModel->where('id', $id)->delete();
     }
 
     public function getOneUser($id)

@@ -2,14 +2,13 @@
 @include('partial.sidebar')
 <main class="main" id="main">
     <section class="section">
-        <h1>Table User</h1>
         <div class="row">
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
                         <a href="user-form">
-                            <button type="button" class="btn btn-primary col-lg-2">
-                                <i class="bi bi-person-fill-add"></i>
+                            <button type="button" class="btn btn-primary col-lg-2 mt-2 mb-2">
+                                <i class="bi bi-person-plus"></i>
                                 Add User
                             </button>
                         </a>
@@ -34,6 +33,17 @@
                                             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#verticalycentered">
                                                 <i class="bi bi-pencil-square"></i>
                                             </button>
+                                            <form action="/user/{{ $user->id }}/delete" method="POST"
+                                                style="display:inline;">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button 
+                                                    type="submit" 
+                                                    class="btn btn-danger"
+                                                    onclick="return confirm('Are you sure wanna remove this user?.This action cant be undone and deleted user unable login to their account');">
+                                                    <i class="bi bi-trash-fill"></i>
+                                                </button>
+                                            </form>
                                         </td>
                                     </tr>
                                 @endforeach

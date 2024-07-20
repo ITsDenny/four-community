@@ -61,5 +61,5 @@ Route::prefix('user')->controller(UserController::class)->group(function () {
     Route::get('/{id}', 'getOneUser');
     Route::put('/{id}', 'update')->name('update-user');
     Route::post('/add-user', 'store')->name('add-user');
-    Route::delete('/delete-user', 'delete')->name('delete-user');
+    Route::delete('/{id}/delete', 'delete')->name('delete-user');
 });

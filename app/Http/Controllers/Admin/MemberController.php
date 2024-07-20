@@ -70,9 +70,6 @@ class MemberController extends Controller
             'address' => $request->address,
             'status' => true,
             'level_id' => $request->level_id,
-            'email' => $request->email,
-            'password' => bcrypt('12345678'),
-            'picture' => 'asset_url'
         ];
         $save = $this->memberModel->where('id', $id)->update($data);
 
