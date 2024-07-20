@@ -17,13 +17,21 @@
                 </div>
                 <div class="col-12">
                     <select class="form-select" aria-label="Select member" name="member_id">
-                        <option selected>Member List</option>
+                        <option selected>Select member to assign</option>
                     @foreach ($members as $member)
                         <option value="{{ $member->id }}">{{ $member->name }}</option>
                     @endforeach
                       </select>
-                  </div>
-                <button type="submit" class="btn btn-primary">New user</button>
+                </div>
+                <div class="col-12">
+                  <select class="form-select" aria-label="Select member" name="member_id">
+                      <option selected>Select group to join</option>
+                  @foreach ($groups as $group)
+                      <option value="{{ $group->id }}">{{ $group->name }}</option>
+                  @endforeach
+                    </select>
+              </div>
+                <button type="submit" class="btn btn-primary">Save user</button>
                 </div>
               </form>
             </div>

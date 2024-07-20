@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Group;
 use App\Models\Member;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -11,10 +12,12 @@ class UserController extends Controller
 {
     public function __construct(
         protected User $userModel,
-        protected Member $memberModel
+        protected Member $memberModel,
+        protected Group $groupModel
     ) {
         $this->userModel = $userModel;
         $this->memberModel = $memberModel;
+        $this->groupModel = $groupModel;
     }
 
     public function store(Request $request)
@@ -22,7 +25,7 @@ class UserController extends Controller
         $user = [
             'name' => $request->name,
             'email' => $request->email,
-            'password' => '$2a$12$c2FnGJPy5GrfMZutgHoxiuv/IQsMGAVtlRMKF7uFQlVfAYIYHqg7K',
+            'password' => '$2a$12$wyeCmTLfo0jTiRYoDhxByeblFpBsCYWnykxPGxDruEn0XCNaPc5me',
             'member_id' => $request->member_id
         ];
 
@@ -38,8 +41,9 @@ class UserController extends Controller
     public function getUserForm()
     {
         $members = $this->memberModel->get();
+        $groups = $this->groupModel->get();
 
-        return view('admin.user.add_user', compact('members'));
+        return view('admin.user.add_user', compact(['members', 'groups']));
     }
 
     public function getUserTable()

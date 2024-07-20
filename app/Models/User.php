@@ -13,8 +13,13 @@ class User extends Authenticatable
 
     protected $guarded = ['id'];
 
-    public function  member()
+    public function member()
     {
         return $this->belongsTo(Member::class, 'member_id', 'id');
+    }
+
+    public function group()
+    {
+        return $this->belongsTo(Group::class, 'group_id', 'id');
     }
 }

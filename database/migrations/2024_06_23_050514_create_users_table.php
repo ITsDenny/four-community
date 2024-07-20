@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('password');
             $table->string('email')->unique();
             $table->foreignId('member_id')->references('id')->on('members');
+            $table->foreignId('group_id')->references('id')->on('groups');
             $table->timestamps();
         });
 

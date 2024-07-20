@@ -27,12 +27,6 @@
                                 </div>
                             </div>
                             <div class="row mb-3">
-                                <label for="email" class="col-sm-2 col-form-label">Email</label>
-                                <div class="col-sm-10">
-                                    <input type="email" id="email" name="email" class="form-control">
-                                </div>
-                            </div>
-                            <div class="row mb-3">
                                 <label for="nik" class="col-sm-2 col-form-label">NIK</label>
                                 <div class="col-sm-10">
                                     <input type="text" id="nik" name="nik" class="form-control">

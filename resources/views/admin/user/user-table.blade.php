@@ -19,7 +19,7 @@
                                     <th>Name</th>
                                     <th>Email</th>
                                     <th>Member</th>
-                                    <th>Member Id</th>
+                                    <th>Group</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -29,7 +29,7 @@
                                         <td>{{ $user->name }}</td>
                                         <td>{{ $user->email }}</td>
                                         <td>{{ $user->member?->name }}</td>
-                                        <td>{{ $user->member?->id }}</td>
+                                        <td>{{ $user->group?->name }}</td>
                                         <td>
                                             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#verticalycentered">
                                                 <i class="bi bi-pencil-square"></i>
